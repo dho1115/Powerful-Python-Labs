@@ -99,7 +99,6 @@ class WebApp:
         return WebApp.routes;
 
 class HTMLView:
-    body = ""
     def render(self):
         return f"<html><body>{self.body}</body></html>"
     
@@ -107,14 +106,13 @@ class HTMLView:
         return f"'<html><body>{self.body}</body></html>'"
 
 class ShoutingHTMLView(HTMLView):
-    body = ""
-    original_htmlview_render = HTMLView.render;
-
     def render(self):
         return f"<html><body><p>{self.body}<p></body></html>".upper();
     
     def __repr__(self) -> str:
-        return f"'{ShoutingHTMLView.original_htmlview_render(self).upper()}'"
+        original_htmlview_render = HTMLView.render;
+
+        return f"'{ original_htmlview_render(self).upper() }'"
 
 class HomePageView(HTMLView):
     body = "Welcome!";
@@ -125,12 +123,8 @@ class AboutPageView(HTMLView):
 class ContactView(HTMLView):
     body = "Get in touch at hello@example.com"
 
-class LegalView(ShoutingHTMLView):
+class LegalView(ShoutingHTMLView, HTMLView):
     body = 'you agree to our terms of service!'
-
-app = WebApp();
-home_view = HomePageView()
-legal_view = LegalView();
 
 # Do not edit any code below this line!
 if __name__ == '__main__':
