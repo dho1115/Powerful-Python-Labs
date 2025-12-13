@@ -107,8 +107,7 @@ class HTMLView:
 
 class ShoutingHTMLView(HTMLView):
     def render(self):
-        # return f"<html><body><p>{self.body}<p></body></html>".upper();
-        return f'<HTML><BODY><P>{self.body.upper()}<P></BODY></HTML>'
+        return f"<html><body><p>{self.body}<p></body></html>".upper();
     
     def __repr__(self) -> str:
         original_htmlview_render = HTMLView.render;
