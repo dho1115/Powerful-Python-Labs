@@ -126,6 +126,9 @@ class ContactView(HTMLView):
 class LegalView(ShoutingHTMLView, HTMLView):
     body = 'you agree to our terms of service!'
 
+    def __repr__(self) -> str:
+        return super().__repr__()
+
 # Do not edit any code below this line!
 if __name__ == '__main__':
     import doctest
